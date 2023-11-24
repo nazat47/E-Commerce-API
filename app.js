@@ -26,6 +26,10 @@ app.use("/api/v1/orders", orderRouter);
 app.use("/api/v1/categories", categorieRouter);
 app.use("/api/v1/users", userRouter);
 
+app.get('/',(req,res)=>{
+  res.send("<h1>E-Commerce API</h1>")
+})
+
 app.use(notFound);
 app.use(errorHandler);
 
