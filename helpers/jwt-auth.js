@@ -13,6 +13,7 @@ function authjwt() {
       { url: /\/api\/v1\/categories(.*)/, methods: ["GET", "OPTIONS"] },
       `/api/v1/auth/login`,
       `/api/v1/auth/register`,
+      `/`,
     ],
   });
 }
