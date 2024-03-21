@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 openapi: 3.0.0
 info:
   title: E-Commerce API
@@ -735,4 +736,743 @@ tags:
 - name: owner
   description: ''
 - name: auth
+=======
+openapi: 3.0.0
+info:
+  title: E-Commerce API
+  contact: {}
+  version: '1.0'
+servers:
+- url: https://e-commerce-api-qudv.onrender.com/api/v1
+  variables: {}
+paths:
+  /products:
+    get:
+      tags:
+      - anyone
+      summary: Getproducts
+      operationId: Getproducts
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+      - owner
+      summary: CreateProduct
+      operationId: CreateProduct
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding: {}
+            schema:
+              required:
+              - name
+              - description
+              - richDescription
+              - image
+              - images
+              - brand
+              - price
+              - categorie
+              - inStock
+              - rating
+              - numberReviews
+              - isFeatured
+              - dateCreated
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: keyborad
+                description:
+                  type: string
+                  example: new rgb
+                richDescription:
+                  type: string
+                  example: backlight
+                image:
+                  type: string
+                  format: binary
+                images:
+                  type: string
+                brand:
+                  type: string
+                  example: konka
+                price:
+                  type: integer
+                  format: int32
+                  example: 123
+                categorie:
+                  type: string
+                  example: 655adb7e6944efba26d58b9a
+                inStock:
+                  type: integer
+                  format: int32
+                  example: 23
+                rating:
+                  type: string
+                numberReviews:
+                  type: string
+                isFeatured:
+                  type: boolean
+                  example: true
+                dateCreated:
+                  type: string
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders:
+    get:
+      tags:
+      - anyone
+      summary: GetOrders
+      operationId: GetOrders
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+      - anyone
+      summary: CreateOrders
+      operationId: CreateOrders
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateOrdersRequest'
+              - example:
+                  orderItems:
+                  - quantity: 2
+                    product: 655c3d49a57f09b149404489
+                  city: dhaka
+                  zip: '13213'
+                  shippingAddress1: grc
+                  shippingAddress2: era
+                  phone: '012493241'
+                  totalPrice: 349
+                  user: 655cc36196197c82bff6cee5
+                  country: bangla
+            example:
+              orderItems:
+              - quantity: 2
+                product: 655c3d49a57f09b149404489
+              city: dhaka
+              zip: '13213'
+              shippingAddress1: grc
+              shippingAddress2: era
+              phone: '012493241'
+              totalPrice: 349
+              user: 655cc36196197c82bff6cee5
+              country: bangla
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /categories:
+    get:
+      tags:
+      - anyone
+      summary: GetCategories
+      operationId: GetCategories
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+      - owner
+      summary: CreateCategory
+      operationId: CreateCategory
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateCategoryRequest'
+              - example:
+                  name: Computers
+                  icon: icon_computer
+                  color: white
+            example:
+              name: Computers
+              icon: icon_computer
+              color: white
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /categories/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The category ID
+        
+    get:
+      tags:
+      - anyone
+      summary: GetCategory
+      operationId: GetCategory
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    patch:
+      tags:
+      - owner
+      summary: UpdateCategory
+      operationId: UpdateCategory
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateCategoryRequest'
+              - example:
+                  name: earbuds
+                  icon: bud_icon
+                  color: yellow
+            example:
+              name: earbuds
+              icon: bud_icon
+              color: yellow
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /products/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The product ID
+    get:
+      tags:
+      - anyone
+      summary: GetProduct
+      operationId: GetProduct
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    patch:
+      tags:
+      - owner
+      summary: UpdateProduct
+      operationId: UpdateProduct
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateProductRequest'
+              - example:
+                  name: dell
+                  description: New earphone 346
+                  price: 100000
+                  categorie: 655adb7e6944efba26d58b9a
+                  inStock: ''
+            example:
+              name: dell
+              description: New earphone 346
+              price: 100000
+              categorie: 655adb7e6944efba26d58b9a
+              inStock: ''
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The order ID
+    get:
+      tags:
+      - anyone
+      summary: GetOrder
+      operationId: GetOrder
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    patch:
+      tags:
+      - anyone
+      summary: UpdateOrder
+      operationId: UpdateOrder
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateOrderRequest'
+              - example:
+                  status: delivered
+            example:
+              status: delivered
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  
+    delete:
+      tags:
+      - anyone
+      summary: DeleteOrder
+      operationId: DeleteOrder
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users:
+    get:
+      tags:
+      - owner
+      summary: GetAllUsers
+      operationId: GetAllUsers
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+      - auth
+      summary: CreateUser
+      operationId: CreateUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateUserRequest'
+              - example:
+                  name: kamal
+                  email: kamal@gmail.com
+                  phone: '01290234432'
+                  passwordHash: kam123
+                  isAdmin: false
+                  street: 221b zero street
+                  zip: '1234'
+                  country: aus
+                  apartment: 5b
+            example:
+              name: kamal
+              email: kamal@gmail.com
+              phone: '01290234432'
+              passwordHash: kam123
+              isAdmin: false
+              street: 221b zero street
+              zip: '1234'
+              country: aus
+              apartment: 5b
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+    delete:
+      tags:
+      - owner
+      summary: DeleteCategory
+      operationId: DeleteCategory
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+      - owner
+      summary: DeleteProduct
+      operationId: DeleteProduct
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The user ID
+    get:
+      tags:
+      - owner
+      summary: GetUser
+      operationId: GetUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders/get/totalsales:
+    get:
+      tags:
+      - owner
+      summary: GetTotalSales
+      operationId: GetTotalSales
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders/get/count:
+    get:
+      tags:
+      - owner
+      summary: CountOrder
+      operationId: CountOrder
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders/userorders/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The order ID
+    get:
+      tags:
+      - owner
+      summary: GetUserOrders
+      operationId: GetUserOrders
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /products/get/imageGallery/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The order ID
+    patch:
+      tags:
+      - owner
+      summary: UpdateProductGallery
+      operationId: UpdateProductGallery
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding: {}
+            schema:
+              required:
+              - images
+              type: object
+              properties:
+                images:
+                  type: string
+                  format: binary
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /auth/login:
+    post:
+      tags:
+      - auth
+      summary: UserLogin
+      operationId: UserLogin
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UserLoginRequest'
+              - example:
+                  email: kamal@gmail.com
+                  passwordHash: kam123
+            example:
+              email: kamal@gmail.com
+              passwordHash: kam123
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+components:
+  schemas:
+    CreateCategoryRequest:
+      title: CreateCategoryRequest
+      required:
+      - name
+      - icon
+      - color
+      type: object
+      properties:
+        name:
+          type: string
+        icon:
+          type: string
+        color:
+          type: string
+      example:
+        name: Computers
+        icon: icon_computer
+        color: white
+    UpdateCategoryRequest:
+      title: UpdateCategoryRequest
+      required:
+      - name
+      - icon
+      - color
+      type: object
+      properties:
+        name:
+          type: string
+        icon:
+          type: string
+        color:
+          type: string
+      example:
+        name: earbuds
+        icon: bud_icon
+        color: yellow
+    UpdateProductRequest:
+      title: UpdateProductRequest
+      required:
+      - name
+      - description
+      - price
+      - categorie
+      - inStock
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: integer
+          format: int32
+        categorie:
+          type: string
+        inStock:
+          type: string
+      example:
+        name: dell
+        description: New earphone 346
+        price: 100000
+        categorie: 655adb7e6944efba26d58b9a
+        inStock: ''
+    CreateUserRequest:
+      title: CreateUserRequest
+      required:
+      - name
+      - email
+      - phone
+      - passwordHash
+      - isAdmin
+      - street
+      - zip
+      - country
+      - apartment
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        passwordHash:
+          type: string
+        isAdmin:
+          type: boolean
+        street:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        apartment:
+          type: string
+      example:
+        name: kamal
+        email: kamal@gmail.com
+        phone: '01290234432'
+        passwordHash: kam123
+        isAdmin: false
+        street: 221b zero street
+        zip: '1234'
+        country: aus
+        apartment: 5b
+    UserLoginRequest:
+      title: UserLoginRequest
+      required:
+      - email
+      - passwordHash
+      type: object
+      properties:
+        email:
+          type: string
+        passwordHash:
+          type: string
+      example:
+        email: kamal@gmail.com
+        passwordHash: kam123
+    CreateOrdersRequest:
+      title: CreateOrdersRequest
+      required:
+      - orderItems
+      - city
+      - zip
+      - shippingAddress1
+      - shippingAddress2
+      - phone
+      - totalPrice
+      - user
+      - country
+      type: object
+      properties:
+        orderItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
+          description: ''
+        city:
+          type: string
+        zip:
+          type: string
+        shippingAddress1:
+          type: string
+        shippingAddress2:
+          type: string
+        phone:
+          type: string
+        totalPrice:
+          type: integer
+          format: int32
+        user:
+          type: string
+        country:
+          type: string
+      example:
+        orderItems:
+        - quantity: 2
+          product: 655c3d49a57f09b149404489
+        city: dhaka
+        zip: '13213'
+        shippingAddress1: grc
+        shippingAddress2: era
+        phone: '012493241'
+        totalPrice: 349
+        user: 655cc36196197c82bff6cee5
+        country: bangla
+    OrderItem:
+      title: OrderItem
+      required:
+      - quantity
+      - product
+      type: object
+      properties:
+        quantity:
+          type: integer
+          format: int32
+        product:
+          type: string
+      example:
+        quantity: 2
+        product: 655c3d49a57f09b149404489
+    UpdateOrderRequest:
+      title: UpdateOrderRequest
+      required:
+      - status
+      type: object
+      properties:
+        status:
+          type: string
+      example:
+        status: delivered
+  securitySchemes:
+    httpBearer:
+      type: http
+      scheme: bearer
+security:
+- httpBearer: []
+tags:
+- name: anyone
+  description: ''
+- name: owner
+  description: ''
+- name: auth
+>>>>>>> c43e90f1f284e5c3833bf8d9d8a00e1c1d24562c
   description: ''
