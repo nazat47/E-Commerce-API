@@ -18,9 +18,15 @@ const authjwt = require("./helpers/jwt-auth");
 const swaggerUI=require('swagger-ui-express')
 const YAML=require('yamljs')
 const swaggerDoc=YAML.load('./swagger.yaml')
+const mongoSanitize=require('express-mongo-sanitize')
+const xss=require('xss-clean')
+const helmet=require("helmet")
 
 
 app.use(cors());
+app.use(mongoSanitize())
+app.use(xss())
+app.use(helmet())
 app.use(express.json());
 app.use('/public/uploads',express.static(__dirname+'/public/uploads'))
 //app.use(authjwt());
