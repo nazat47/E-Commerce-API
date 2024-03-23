@@ -25,5 +25,5 @@ jobs:
       - name: Delete old container
         run: docker rm -f nazatmustag-container
       - name: Run docker container
-        run: docker -d -p 3000:3000 --name nazatmustag-container ecommerce/nazatmustag
+        run: docker -d -p 3000:3000 --name nazatmustag-container nazatmustag/practice
         
