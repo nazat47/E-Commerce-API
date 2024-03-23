@@ -21,7 +21,7 @@ jobs:
     runs-on: [self-hosted]
     steps:
       - name: Pull image
-        run: docker pull ecommerce/nazatmustag:latest
+        run: docker pull nazatmustag/practice:latest
       - name: Delete old container
         run: docker rm -f nazatmustag-container
       - name: Run docker container
