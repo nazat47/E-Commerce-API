@@ -18,7 +18,7 @@ jobs:
         run: docker push nazatmustag/practice:latest
   deploy:
     needs:  build
-    runs-on: [ecom-aws]
+    runs-on: [self-hosted]
     steps:
       - name: Pull image
         run: docker pull ecommerce/nazatmustag:latest
