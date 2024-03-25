@@ -24,7 +24,7 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: ecom
           environment_name: Ecom-env 
-          version_label: v2
+          version_label: ${{github.sha}}
           region: ap-southeast-1
           deployment_package: ecom-app.zip     
 
