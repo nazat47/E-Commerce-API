@@ -397,17 +397,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-    delete:
-      tags:
-      - owner
-      summary: DeleteProduct
-      operationId: DeleteProduct
-      parameters: []
-      responses:
-        '200':
-          description: ''
-          headers: {}
-      deprecated: false
   /users/{id}:
     parameters:
       - in: path
