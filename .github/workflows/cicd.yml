@@ -14,7 +14,7 @@ jobs:
         with:
           node-version: 20
       - name: Install Dependencies
-        run:  npm Install
+        run:  npm install
       - name: Generate Deployment package
         run:  zip -r ecom-app.zip . -x '*.git'
       - name: Deploy to EB
