@@ -1,29 +1,59 @@
 name: CICD
-
 on:
   push:
-    branches: [main]
-
+    branches:
+      - main
 jobs:
   build:
     runs-on: [ubuntu-latest]
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-      - name: Login docker
-        run: docker login -u nazatmustag -p Agent4747#
-      - name: Build docker
-        run: docker build -t nazatmustag/practice .
-      - name: Publish docker
-        run: docker push nazatmustag/practice:latest
-  deploy:
-    needs:  build
-    runs-on: [self-hosted]
-    steps:
-      - name: Pull image
-        run: docker pull nazatmustag/practice:latest
-      - name: Delete old container
-        run: docker rm -f nazatmustag-container
-      - name: Run docker container
-        run: docker run -d -p 3000:3000 --name nazatmustag-container nazatmustag/practice
+        uses:  actions/checkout@v4
+      - name: Setup node
+        uses:  actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install Dependencies
+        run:  npm Install
+      - name: Generate Deployment package
+        run:  zip -r ecom-app.zip . -x '*.git'
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v21
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: ecom
+          environment_name: Ecom-env 
+          version_label: v2
+          region: ap-southeast-1
+          deployment_package: ecom-app.zip     
+
+# name: CICD
+
+# on:
+#   push:
+#     branches: [main]
+
+# jobs:
+#   build:
+#     runs-on: [ubuntu-latest]
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v3
+#       - name: Login docker
+#         run: docker login -u nazatmustag -p Agent4747#
+#       - name: Build docker
+#         run: docker build -t nazatmustag/practice .
+#       - name: Publish docker
+#         run: docker push nazatmustag/practice:latest
+#   deploy:
+#     needs:  build
+#     runs-on: [self-hosted]
+#     steps:
+#       - name: Pull image
+#         run: docker pull nazatmustag/practice:latest
+#       - name: Delete old container
+#         run: docker rm -f nazatmustag-container
+#       - name: Run docker container
+#         run: docker run -d -t -p 3000:3000 --name nazatmustag-container nazatmustag/practice
         
